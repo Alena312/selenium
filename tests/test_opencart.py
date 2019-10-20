@@ -4,24 +4,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 import time
 
-from locators import AdminPanel
 from locators import GeneralElements
 from locators import MainPage
 from locators import ProductCard
 from locators import ComponentsSection
 from locators import RegisterAccount
 
+
 def test_opencart(browser, base_url):
     browser.get(f'http://{base_url}/opencart/')
     assert '/opencart/' in browser.current_url, 'URL неверный!'
-
-
-def test_adminpanel_login(browser):
-    browser.get('http://localhost/opencart/admin')
-    browser.find_element_by_css_selector(AdminPanel.username).send_keys('admin')
-    browser.find_element_by_css_selector(AdminPanel.password).send_keys('123456')
-    browser.find_element_by_css_selector(AdminPanel.login_button).click()
-    assert 'dashboard' in browser.current_url, 'Error Login'
 
 
 def test_add_cart(browser):

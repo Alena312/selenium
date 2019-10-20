@@ -3,6 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options
 
+from locators import AdminPanel
+
 
 def pytest_addoption(parser):
     parser.addoption('--browser', default='chrome', help='You need to choose a browser')
@@ -21,7 +23,7 @@ def browser(request):
     if parameter == 'chrome':
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--start-maximized')
-        chrome_options.add_argument('--headless')
+        # chrome_options.add_argument('--headless')
         browser = webdriver.Chrome(options=chrome_options)
     
     elif parameter == 'firefox':
@@ -38,6 +40,16 @@ def browser(request):
 
     browser.quit()
 
+
 @pytest.fixture
 def base_url(request):
     return request.config.getoption('--base_url')
+
+
+@pytest.fixture
+def login_admin(browser):
+    browser.get('http://localhost/admin')
+    browser.find_element_by_css_selector(AdminPanel.username).send_keys('admin')
+    browser.find_element_by_css_selector(AdminPanel.password).send_keys('123456')
+    browser.find_element_by_css_selector(AdminPanel.login_button).click()
+    assert 'dashboard' in browser.current_url, 'Error Login'
