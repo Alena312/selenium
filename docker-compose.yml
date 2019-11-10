@@ -8,8 +8,6 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
       - 'mariadb_data:/bitnami'
-    ports:
-      - 3306:3306
   opencart:
     image: 'bitnami/opencart:3'
     environment:

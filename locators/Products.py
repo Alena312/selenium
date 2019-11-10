@@ -16,5 +16,10 @@ class Products:
     model = (css, '#input-model')
     tax_class = (css, '#input-tax-class')
 
+    pick_a_product = (css, '[name="selected[]"]')
+
     save = (css, '.pull-right .btn-primary')
+    edit_product = (css, 'a[data-original-title="Edit"]')
+    delete_product = (css, '.pull-right .btn-danger')
+
     success_message = (css, '.alert-success')

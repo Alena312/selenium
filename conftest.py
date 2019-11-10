@@ -14,7 +14,7 @@ def pytest_addoption(parser):
 @pytest.fixture
 def browser(request):
     '''
-    Фикстура для настройки вебдрайвера, переданного 
+    Фикстура для настройки вебдрайвера, переданного
     в командной строке при запуске тестов
     '''
 
@@ -23,9 +23,9 @@ def browser(request):
     if parameter == 'chrome':
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--start-maximized')
-        # chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--headless')
         browser = webdriver.Chrome(options=chrome_options)
-    
+
     elif parameter == 'firefox':
         firefox_options = webdriver.FirefoxOptions()
         firefox_options.add_argument('--start-maximized')
@@ -49,7 +49,7 @@ def base_url(request):
 @pytest.fixture
 def login_admin(browser):
     browser.get('http://localhost/admin')
-    browser.find_element_by_css_selector(AdminPanel.username).send_keys('admin')
-    browser.find_element_by_css_selector(AdminPanel.password).send_keys('123456')
+    browser.find_element_by_css_selector(AdminPanel.username).send_keys('user')
+    browser.find_element_by_css_selector(AdminPanel.password).send_keys('bitnami1')
     browser.find_element_by_css_selector(AdminPanel.login_button).click()
     assert 'dashboard' in browser.current_url, 'Error Login'
