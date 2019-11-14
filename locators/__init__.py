@@ -6,3 +6,4 @@ from .ProductCard import ProductCard
 from .ComponentsSection import ComponentsSection
 from .RegisterAccount import RegisterAccount
 from .Products import Products
+from .DartDnD import DartDnD
